@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+    <title>欢喜闹元宵 猜谜赢好礼</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="./css/reset.min.css" rel="stylesheet">
+    <link href="./css/style.min.css?v=7" rel="stylesheet">
+    <link href="./css/swiper.min.css" rel="stylesheet">
+    <script src="./js/rem.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topBox">
+            <img src="images/topBg.png" alt="">
+            <div class="subject">
+                <img src="images/t0.png" alt="">
+            </div>
+        </div>
+        <div class="bottomBox">
+            <div class="mBox m4">
+                <img src="images/m4.png" alt="">
+                <div class="mz">
+                    <span>
+
+                    </span>
+                    <span>
+
+                    </span>
+                    <span>
+
+                    </span>
+                    <span>
+
+                    </span>
+                </div>
+            </div>
+            <div class="mBox m2">
+                <img src="images/m2.png" alt="">
+                <div class="mz">
+                    <span>
+
+                    </span>
+                    <span>
+
+                    </span>
+
+                </div>
+            </div>
+            <div class="mBox m3">
+                <img src="images/m3.png" alt="">
+                <div class="mz">
+                    <span>
+
+                    </span>
+                    <span>
+
+                    </span>
+                    <span>
+
+                    </span>
+
+                </div>
+            </div>
+            <div class="optionBox">
+                <img src="images/op0.png" alt="">
+                <div class="optionItem">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="submitBtn  notBtn">
+                <img src="images/tijiao.png" alt="">
+            </div>
+        </div>
+        <div class="promptBox">
+            <img src="images/tishi.png" alt="">
+        </div>
+    </div>
+    <div class="ps_tishi">
+        <img src="images/tishi_pop.png" alt="">
+    </div>
+    <!--提示弹窗-->
+    <div class="pop" id="promptPop" style="display:none;">
+        <div class="cont">
+            <img src="images/pop_tishi.png" alt="">
+            <div class="btnLook">
+                <a class="lookPrompt" href="javascript:void(0)">
+                    <img src="images/look_true.png" alt="">
+                </a>
+                <a class="closePrompt" href="javascript:void(0)">
+                    <img src="images/look_false.png" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- <div class="close">
+                <img src="images/close.png" alt="">
+            </div> -->
+    </div>
+    <!--非第一次提示-->
+    <div class="pop" id="oneLook" style="display:none;">
+        <div class="cont">
+            <img src="images/tishione.png" alt="">
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--查看提示弹窗-->
+    <div class="pop" id="lookPop" style="display:none; ">
+        <div class="cont">
+            <div class="look">
+                <div class="mBox m4">
+                    <img src="images/m4.png" alt="">
+                    <div class="mz">
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+                    </div>
+                </div>
+                <div class="mBox m2">
+                    <img src="images/m2.png" alt="">
+                    <div class="mz">
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+
+                    </div>
+                </div>
+                <div class="mBox m3">
+                    <img src="images/m3.png" alt="">
+                    <div class="mz">
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--答错弹窗1-->
+    <div class="pop" id="wrongPop" style="display:none;">
+        <div class="cont">
+            <img src="images/pop_wrong.png" alt="">
+
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--答错弹窗2-->
+    <div class="pop" id="wrongPop2" style="display:none;">
+        <div class="cont">
+            <img src="images/pop_wrong2.png" alt="">
+
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+
+    <!--抽奖2-->
+    <div class="pop2" id="zhongjian2" style="display:flex;">
+        <div class="cont">
+            <img src="images/choujiang2.png" alt="">
+            <div class="top">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="images/d0.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d4.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d5.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <div class="bottom">
+                <ul class="dList">
+                    <li class="active">
+                        <img src="images/d0.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d1.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d2.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d3.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d4.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d5.png" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="zbtn">
+                <img src="images/ztijiao.png" alt="">
+            </div>
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--中奖-->
+    <div class="pop" id="zhong" style="display:none;">
+        <div  class="cont" >
+            <div id="pop_btns" class="pop_btns">
+                <a id="share" class="zjbtn" href="javascript:void(0)">
+                    <img src="images/xuanyao.png" alt="">
+                </a>
+                <a id="qulingqu" onclick="toSanJiaPage()" class="zjbtn" href="javascript:void(0)">
+                    <img src="images/qulingqu.png" alt="">
+                </a> <!--可以隐藏-->
+            </div>
+        </div>
+
+        <div id="riddlesClose" class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+
+
+
+    <!--通用提示窗-->
+    <div class="pop" id="errorPop" style="display:none;">
+        <div class="cont">
+            <div class="textBg2">
+                <img src="images/list_bg.png" alt="">
+                <p>
+                    今日求助次数已用完
+                </p>
+            </div>
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script type="text/javascript" src="js/platform.js" ></script>
+    <script type="text/javascript" src="js/base.js?v=16" ></script>
+    <script type="text/javascript" src="js/riddles.js?v=17"></script>
+    <script>
+        window.onload = function () {
+            var swiper = new Swiper('.swiper-container', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                on: {
+                    slideChangeTransitionStart: function () {
+                        $(".dList li").each(function () {
+                            $(this).removeClass("active");
+                        })
+                        $(".dList li").eq(this.activeIndex).addClass("active");
+                    },
+                },
+            });
+            swiper.navigation.$nextEl.css('backgroundImage', 'url(images/right.png)');
+            swiper.navigation.$prevEl.css('backgroundImage', 'url(images/left.png)');
+            // $(".dList li").on("click",function(){
+            //     $(this).index();
+            // })
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

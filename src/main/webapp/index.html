@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+    <title>欢喜闹元宵 猜谜赢好礼</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="./css/reset.min.css" rel="stylesheet">
+    <link href="./css/style.min.css?v=6" rel="stylesheet">
+    <link href="./css/swiper.min.css" rel="stylesheet">
+    <script src="./js/rem.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <div class="container_index">
+        <div class="navList">
+            <a href="javascript:void(0)" class="prizeBtn">
+                <img src="images/prizeBtn.png" alt="">
+            </a>
+            <a href="javascript:void(0)" class="ruleBtn" >
+                <img src="images/ruleBtn.png" alt="">
+            </a>
+        </div>
+        <div class="indoxBtn" id="indoxBtn">
+            <a href="javascript:void(0)">
+                <img src="images/index_title.png" alt="">
+            </a>
+        </div>
+    </div>
+    <!--非天津移动用户提示窗-->
+    <div id="noActiveUser" class="pop" style="display:none;">
+        <div class="cont">
+            <img src="images/pop_yidong.png" alt="">
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--二维码提示窗-->
+    <div id="noApp" class="pop" style="display:none;">
+        <div class="cont">
+            <img src="images/pop_wx.png" alt="">
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+   
+    <!--无次数提示窗-->
+    <div class="pop" style="display:none;" id="noTime">
+        <div class="cont">
+            <img src="images/pop_noTime.png" alt="">
+            <a href="javascript:void(0)" id="noTimeShare" class="btn">
+                <img src="images/pop_noTime_btn.png" alt="">
+            </a>
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--活动规则提示窗-->
+    <div class="pop" id="ruleBox" style="display:none">
+        <div class="pop_title">
+            <img src="images/pop_rule_title.png" alt="">
+        </div>
+        <div class="cont">
+            <div class="text">
+                <p>
+                    1、活动时间为2019年2月16日—2019年2月18日，活动期间内，天津移动用户需下载10086APP方可参与活动，携号转网客户除外；</br>
+                    2、每位用户每天可参与一次猜灯谜游戏，答对并提交全部答案方可参与抽奖，奖品数量有限，先到先得；</br>
+                    <img src="images/pro_list.jpg" alt=""> </br>
+                    3、每人每天猜灯谜时有3次获得答案提示的机会，每个灯谜仅可使用1次提示；</br>
+                    4、若用户获得话费奖品，将于2019年3月31日前充入手机账户，届时会有短信提醒，若获奖号码出现停机、销户、携转、卸载10086APP等情况，奖励可能无法充值到账；</br>
+                    5、若用户抽中实物奖励，所中实物奖品将于活动结束后的7个工作日内，由三佳购物的工作人员电话联系您安排寄送，请保持手机畅通。
+                </p>
+            </div>
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--中奖记录提示窗-->
+    <div class="pop" id="prizeBox" style="display:none;">
+        <div class="pop_title">
+            <img src="images/list_title.png" alt="">
+        </div>
+        <div  id="cont"  class="cont">
+            <ul>
+
+            </ul>
+            <div id="noList" class="noList" style=" display: none;"> <!--无奖品-->
+                <img src="images/noList.png" alt="">
+            </div>
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--抽奖2-->
+    <div class="pop2" id="zhongjian2" style="display:flex;">
+        <div class="cont">
+            <img src="images/choujiang2.png" alt="">
+            <div class="top">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="images/d0.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d1.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d2.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d4.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/d5.png" alt="">
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <div class="bottom">
+                <ul class="dList">
+                    <li class="active">
+                        <img src="images/d0.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d1.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d2.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d3.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d4.png" alt="">
+                    </li>
+                    <li>
+                        <img src="images/d5.png" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="zbtn">
+                <img src="images/ztijiao.png" alt="">
+            </div>
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <!--中奖-->
+    <div class="pop" id="zhong" style="display:none;">
+        <div  class="cont" >
+            <div id="pop_btns" class="pop_btns">
+                <a id="share" class="zjbtn" href="javascript:void(0)">
+                    <img src="images/xuanyao.png" alt="">
+                </a>
+                <a id="qulingqu" onclick="toSanJiaPage()" class="zjbtn" href="javascript:void(0)">
+                    <img src="images/qulingqu.png" alt="">
+                </a> <!--可以隐藏-->
+            </div>
+        </div>
+
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+
+
+
+
+    <!--通用提示窗-->
+    <div class="pop" id="errorPop" style="display:none;">
+        <div class="cont">
+            <div class="textBg2">
+                <img src="images/list_bg.png" alt="">
+                <p>
+                    <!--text-->
+                </p>
+            </div>
+        </div>
+        <div class="close">
+            <img src="images/close.png" alt="">
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/platform.js"></script>
+    <script src="js/base.js?v=17"></script>
+    <script src="js/index.js?v=15"></script>
+    <script>
+        window.onload = function () {
+            var swiper = new Swiper('.swiper-container', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                on: {
+                    slideChangeTransitionStart: function () {
+                        $(".dList li").each(function () {
+                            $(this).removeClass("active");
+                        })
+                        $(".dList li").eq(this.activeIndex).addClass("active");
+                    },
+                },
+            });
+            swiper.navigation.$nextEl.css('backgroundImage', 'url(images/right.png)');
+            swiper.navigation.$prevEl.css('backgroundImage', 'url(images/left.png)');
+            // $(".dList li").on("click",function(){
+            //     $(this).index();
+            // })
+        }
+        var url = getWebPath() + "home/count.do?type=0";
+        $.get(url, function(response){
+            if(response.status == 302){
+                toOfflinePage();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

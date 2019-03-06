@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        http://www.springframework.org/schema/tx
+          				http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+         				http://www.springframework.org/schema/aop
+          				http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="cn.richinfo.spring.service" />
+
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+
+    <!-- redis连接池的配置 -->
+    <!--<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+      <property name="maxTotal" value="${redis.pool.maxTotal}" />
+      <property name="maxIdle" value="${redis.pool.maxIdle}" />
+      <property name="timeBetweenEvictionRunsMillis" value="${redis.pool.timeBetweenEvictionRunsMillis}" />
+      <property name="minEvictableIdleTimeMillis" value="${redis.pool.minEvictableIdleTimeMillis}" />
+      <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+      <property name="maxWaitMillis" value="${redis.pool.maxWait}" />
+    </bean>-->
+
+    <!-- redis的连接池pool，不是必选项：timeout/password  -->
+    <!--<bean id = "jedisPool" class="redis.clients.jedis.JedisPool">
+      <constructor-arg index="0" ref="jedisPoolConfig"/>
+		&lt;!&ndash;以下type属性必须加上，不然spring在生成 redisPool Bean的时候会调错构造方法&ndash;&gt;
+      <constructor-arg index="1" value="${redis.ip}" type="java.lang.String"/>
+      <constructor-arg index="2" value="${redis.port}" type="int"/>
+
+    </bean>-->
+
+
+
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <!-- <property name="jdbcUrl"
+                value="jdbc:mysql://192.168.18.121 127.0.0.1:3306/gdkf?useOldAliasMetadataBehavior=true" /> -->
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+        <property name="initialPoolSize" value="${jdbc.initialSize}"/>
+        <!--连接池中保留的最小连接数。 -->
+        <property name="minPoolSize" value="${jdbc.minPoolSize}"/>
+        <!--连接池中保留的最大连接数。Default: 15 -->
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+        <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+        <property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+        <property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
+        <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+        <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"/>
+
+    </bean>
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="configLocation" value="classpath:mybatis-config.xml"></property>-->
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:cn/richinfo/spring/**/mapper/*.xml"></property>
+    </bean>
+    
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.richinfo.spring.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 支持 @Transactional 标记 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <aop:config proxy-target-class="true">
+        <!-- service包下面 service$结尾的类的所有方法 -->
+        <aop:advisor
+                pointcut="execution(* cn.richinfo.spring.service.*.*(..))"
+                advice-ref="txAdvice"/>
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" rollback-for="CustomException"/>
+        </tx:attributes>
+    </tx:advice>
+</beans>
